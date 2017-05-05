@@ -1,6 +1,7 @@
 <header>
   <%= link_to 'Home', root_path %><br />
   <% if signed_in? %>
+      <%= link_to 'Addresses', addresses_path %><br />
       Signed in as: <%= current_user.email %>
       <%= button_to 'Sign out', sign_out_path, method: :delete %>
   <% else %>
