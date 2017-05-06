@@ -7,11 +7,11 @@
     <%= render partial: '/users/form', object: form %>
 
     <div class="form-group row">
-      <%= form.submit class: 'btn btn-primary' %>
+      <%= form.submit class: 'btn btn-primary', data: {test: 'submit'} %>
     </div>
 
     <div class="row">
-      <%= link_to t(".sign_in"), sign_in_path %>
+      <%= link_to t(".sign_in"), sign_in_path, data: {test: 'sign-in'} %>
     </div>
   <% end %>
     </div>

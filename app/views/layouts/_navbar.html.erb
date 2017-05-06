@@ -5,21 +5,21 @@
 
   <div class="collapse navbar-collapse" id="navbar">
     <div class="navbar-nav mr-auto">
-      <%= link_to root_path, class: "nav-item nav-link active" do %>
+      <%= link_to root_path, class: "nav-item nav-link active", data: {test: 'home'} do %>
           Home
           <span class="sr-only">(current)</span>
       <% end %>
       <% if signed_in? %>
-          <%= link_to 'Addresses', addresses_path, class: 'nav-item nav-link' %>
-          <%= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-item nav-link' %>
+          <%= link_to 'Addresses', addresses_path, class: 'nav-item nav-link', data: {test: 'addresses'} %>
+          <%= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-item nav-link', data: {test: 'sign-out'} %>
       <% else %>
-          <%= link_to 'Sign in', sign_in_path, class: "nav-item nav-link" %>
+          <%= link_to 'Sign in', sign_in_path, class: "nav-item nav-link", data: {test: 'sign-in'} %>
       <% end %>
     </div>
 
     <div>
       <% if signed_in? %>
-        <span class="navbar-text "><%= current_user.email %></span>
+        <span class="navbar-text" data-test="current-user"><%= current_user.email %></span>
       <% end %>
     </div>
   </div>

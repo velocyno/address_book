@@ -20,9 +20,9 @@
         <td><%= address.last_name %></td>
         <td><%= address.city %></td>
         <td><%= address.state %></td>
-        <td><%= link_to 'Show', address %></td>
-        <td><%= link_to 'Edit', edit_address_path(address) %></td>
-        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', address, data: {test: "show-#{address.id}"} %></td>
+        <td><%= link_to 'Edit', edit_address_path(address), data: {test: "edit-#{address.id}"} %></td>
+        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?', test: "destroy-#{address.id}" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Address', new_address_path, class: 'row justify-content-center' %>
+<%= link_to 'New Address', new_address_path, class: 'row justify-content-center', data: {test: 'create'} %>
