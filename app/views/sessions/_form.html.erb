@@ -9,7 +9,7 @@
       <%= form.submit class: 'btn btn-primary' %>
   </div>
   <% if Clearance.configuration.allow_sign_up? %>
-    <div class="form-group row">
+    <div class="row">
         <%= link_to t(".sign_up"), sign_up_path %>
     </div>
   <% end %>
