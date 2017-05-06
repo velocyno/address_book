@@ -1,54 +1,57 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @address.first_name %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>First name: </strong></span>
+  <span class="col offset-1 offset-sm-0"> <%= @address.first_name %></span>
 </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @address.last_name %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Last name: </strong></span>
+  <span class="col offset-1 offset-sm-0"> <%= @address.last_name %></span>
 </p>
 
-<p>
-  <strong>Line 1:</strong>
-  <%= @address.line_1 %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Line 1: </strong></span>
+  <span class="col offset-1 offset-sm-0"> <%= @address.line_1 %></span>
 </p>
 
-<p>
-  <strong>Line 2:</strong>
-  <%= @address.line_2 %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Line 2: </strong></span>
+  <span class="col offset-1 offset-sm-0"> <%= @address.line_2 %></span>
 </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @address.city %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>City: </strong></span>
+  <span class="col offset-1 offset-sm-0"> <%= @address.city %></span>
 </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @address.state %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>State: </strong></span>
+  <span class="col offset-1 offset-sm-0"> <%= @address.state %></span>
 </p>
 
-<p>
-  <strong>Zip code:</strong>
-  <%= @address.zip_code %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Zip code: </strong></span>
+  <span class="col offset-1 offset-sm-0"> <%= @address.zip_code %></span>
 </p>
 
-<p>
-  <strong>Country:</strong>
-  <%= @address.country %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Country: </strong></span>
+  <span class="col offset-1 offset-sm-0"> <%= @address.country %></span>
 </p>
 
-<p>
-  <strong>Birthday:</strong>
-  <%= @address.birthday %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Birthday: </strong></span>
+  <span class="col offset-1 offset-sm-0"> <%= @address.birthday %></span>
 </p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @address.note %>
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Note: </strong></span>
+  <span class="col offset-1 offset-sm-0"><%= @address.note %></span>
 </p>
 
-<%= link_to 'Edit', edit_address_path(@address) %> |
-<%= link_to 'Back', addresses_path %>
+<div class="row">
+  <%= link_to 'Edit', edit_address_path(@address) %>
+  &nbsp; | &nbsp;
+  <%= link_to 'List', addresses_path %>
+</div>
