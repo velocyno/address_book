@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>AddressBook</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/rails_default' %>
+    <%= render 'layouts/ie' %>
+    <%= render 'layouts/bootstrap_head' %>
   </head>
 
   <body>
-  <%= render 'layouts/header' %>
+  <%= render 'layouts/navbar' %>
   <div class="container">
-    <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-  <% end %>
+    <%= render 'layouts/flash' %>
     <%= yield %>
   </div>
+  <%= render 'layouts/bootstrap_foot' %>
   </body>
 </html>
