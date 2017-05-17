@@ -42,6 +42,14 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 
+  gem 'rspec-rails'
+  gem 'watir', '~> 6.0'
+  gem 'watir_drops'
+  gem 'watir_model'
+  gem 'require_all'
+  gem 'parallel_split_test'
+  gem 'sauce_whisk'
+  gem 'faker'
 end
 
 group :development do
