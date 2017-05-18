@@ -242,6 +242,7 @@ DEPENDENCIES
   pg (~> 0.20)
   puma (~> 3.0)
   rails (~> 5.0.2)
+  rake
   require_all
   rspec (~> 3.5.0)
   rspec-rails

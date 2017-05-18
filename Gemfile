@@ -43,6 +43,7 @@ group :development, :test do
   gem 'sqlite3'
   gem "watir-rails"
 
+  gem 'rake'
   gem 'rspec', '~> 3.5.0'
   gem 'rspec-rails'
   gem 'watir', '~> 6.0'
