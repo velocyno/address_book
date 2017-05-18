@@ -41,7 +41,9 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem "watir-rails"
 
+  gem 'rspec', '~> 3.5.0'
   gem 'rspec-rails'
   gem 'watir', '~> 6.0'
   gem 'watir_drops'
