@@ -5,7 +5,7 @@ describe "Test in Series" do
   it 'Uses Page objects' do
     Home.visit.sign_in_link
     SignIn.new.sign_up_link
-    user = User.new
+    user = Test::User.new
     SignUp.new.submit_form(user)
     expect(NavBar.new.signed_in_user).to eq user.email
 

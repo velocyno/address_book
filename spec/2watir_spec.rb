@@ -30,7 +30,7 @@ describe "Test in Series" do
     browser.text_field(id: 'address_zip_code').send_keys "0"
     browser.textarea(id: 'address_note').send_keys "Hi Mom"
     browser.button(data_test: 'submit').click
-    expect(browser.p(id: 'notice').text).to eq 'Address was successfully created.'
+    expect(browser.div(data_test: 'notice').text).to eq 'Address was successfully created.'
     browser.a(data_test: 'list').click
     expect(browser.tbody.wait_until(&:present?).trs.size).to eq 1
     browser.a(text: 'Edit').click
@@ -39,13 +39,13 @@ describe "Test in Series" do
     browser.text_field(id: 'address_last_name').clear
     browser.text_field(id: 'address_last_name').send_keys "Name"
     browser.button(data_test: 'submit').click
-    expect(browser.p(id: 'notice').text).to eq 'Address was successfully updated.'
+    expect(browser.div(data_test: 'notice').text).to eq 'Address was successfully updated.'
     browser.a(data_test: 'list').click
     expect(browser.td.text).to eq "Changed"
     expect(browser.td(index: 1).text).to eq "Name"
     browser.a(text: 'Destroy').click
     browser.alert.ok
-    expect(browser.p(id: 'notice').text).to eq 'Address was successfully destroyed.'
+    expect(browser.div(data_test: 'notice').text).to eq 'Address was successfully destroyed.'
     expect(browser.tbody.trs.size).to eq 0
   end
 

@@ -34,7 +34,7 @@ describe "Test in Series" do
     driver.first(id: 'address_zip_code').send_keys "0"
     driver.first(id: 'address_note').send_keys "Hi Mom"
     driver.first(css: "input[data-test='submit']").click
-    expect(driver.first(id: 'notice').text).to eq 'Address was successfully created.'
+    expect(driver.first(css: "a[data-test='notice']").text).to eq 'Address was successfully created.'
     driver.first(css: "a[data-test='list']").click
     sleep 0.5
     expect(driver.all(css: 'tbody tr').size).to eq 1
@@ -45,7 +45,7 @@ describe "Test in Series" do
     driver.first(id: 'address_last_name').clear
     driver.first(id: 'address_last_name').send_keys "Name"
     driver.first(css: "input[data-test='submit']").click
-    expect(driver.first(id: 'notice').text).to eq 'Address was successfully updated.'
+    expect(driver.first(css: "a[data-test='notice']").text).to eq 'Address was successfully updated.'
     driver.first(css: "a[data-test='list']").click
     sleep 0.5
     expect(driver.first(css: 'td').text).to eql "Changed"
