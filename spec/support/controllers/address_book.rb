@@ -4,6 +4,8 @@ class AddressBook
     WatirDrops::PageObject.browser
   end
 
+  # TODO - These will be replaced by API calls
+
   def create_user(user = nil)
     user = log_in_user(user)
     NavBar.new.sign_out_user
