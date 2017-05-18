@@ -11,6 +11,8 @@ class BaseModel < WatirModel
     model = super
     model.tap { |m| m.id = id }
   end
+
+  # TODO - re-evaluate this after API set up
   #
   # def to_hash
   #   keys.each_with_object({}) do |key, hash|
