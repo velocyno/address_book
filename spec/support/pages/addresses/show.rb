@@ -1,12 +1,12 @@
 module Addresses
-  class Show < WatirDrops::PageObject
+  class Show < BasePage
 
-    page_url { |address| "https://address-book-example.herokuapp.com/addresses/#{address.id}" }
+    page_url { |address| "/addresses/#{address.id}" }
 
     element(:list) { browser.a(data_test: 'list') }
     element(:edit) { browser.a(data_test: 'edit') }
 
-    element(:notice) { browser.p(id: 'notice') }
+    element(:notice) { browser.div(data_test: 'notice') }
     element(:first_name) { browser.span(data_test: 'first_name') }
     element(:last_name) { browser.span(data_test: 'last_name') }
     element(:line_1) { browser.span(data_test: 'line_1') }
@@ -35,10 +35,10 @@ module Addresses
     end
 
     def to_address
-      hash = Address.keys.each_with_object({}) do |sym, hash|
+      hash = Test::Address.keys.each_with_object({}) do |sym, hash|
         hash[sym] = send(sym).text
       end
-      Address.new hash
+      Test::Address.new hash
     end
 
     def on_page?

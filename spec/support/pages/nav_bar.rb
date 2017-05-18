@@ -1,4 +1,4 @@
-class NavBar < WatirDrops::PageObject
+class NavBar < BasePage
 
   element(:current_user) { browser.span(data_test: 'current-user') }
   element(:sign_out) { browser.a(data_test: 'sign-out') }

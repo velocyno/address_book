@@ -1,6 +1,6 @@
-class Home < WatirDrops::PageObject
+class Home < BasePage
 
-  page_url { "https://address-book-example.herokuapp.com" }
+  page_url { '/' }
 
   element(:sign_in) { browser.a(data_test: 'sign-in') }
 

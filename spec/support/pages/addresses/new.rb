@@ -1,7 +1,7 @@
 module Addresses
-  class New < WatirDrops::PageObject
+  class New < BasePage
 
-    page_url { "https://address-book-example.herokuapp.com/addresses/new" }
+    page_url { "/addresses/new" }
 
     element(:first_name) { browser.text_field(id: 'address_first_name') }
     element(:last_name) { browser.text_field(id: 'address_last_name') }
@@ -13,7 +13,7 @@ module Addresses
     element(:submit) { browser.button(data_test: 'submit') }
 
     def submit_form(address = nil)
-      address ||= Address.new
+      address ||= Test::Address.new
       fill_form(address)
       submit.click
       browser.wait_while { on_page? }

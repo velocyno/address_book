@@ -1,6 +1,6 @@
-class SignIn < WatirDrops::PageObject
+class SignIn < BasePage
 
-  page_url { "https://address-book-example.herokuapp.com/sign_in" }
+  page_url { "/sign_in" }
 
   element(:sign_up) { browser.a(data_test: 'sign-up') }
   element(:email) { browser.text_field(id: "session_email") }
@@ -8,7 +8,7 @@ class SignIn < WatirDrops::PageObject
   element(:submit) { browser.button(data_test: 'submit') }
 
   def submit_form(user = nil)
-    user ||= User.new
+    user ||= Test::User.new
     fill_form(user)
     submit.click
   end

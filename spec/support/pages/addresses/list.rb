@@ -1,15 +1,14 @@
 module Addresses
-  class List < WatirDrops::PageObject
+  class List < BasePage
 
-    page_url { "https://address-book-example.herokuapp.com/addresses" }
+    page_url { "/addresses" }
 
     element(:create) { browser.a(data_test: 'create') }
     elements(:addresses) { browser.tbody.wait_until(&:present?).trs }
     element(:show) { |index = 0| browser.td(text: 'Show', index: index) }
     element(:edit) { |index = 0| browser.td(text: 'Edit', index: index) }
     element(:delete) { |index = 0| browser.td(text: 'Destroy', index: index) }
-    element(:notice) { browser.p(id: 'notice') }
-
+    element(:notice) { browser.div(data_test: 'notice') }
 
     def new_address_link
       create.click
