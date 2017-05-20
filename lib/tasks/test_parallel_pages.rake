@@ -5,7 +5,8 @@ unless Rails.env.production?
   ENV['PARALLEL_SPLIT_TEST_PROCESSES'] = '10'
   @success = true
 
-  task :test_parallel do
+  task :test_parallel_pages do
+    ENV['NO_API'] = 'true'
     ENV['BUILD_TAG'] += "-#{ENV['TEST_RUNNER']}" if ENV['BUILD_TAG']
     junit = 'junit_reports/test'
     FileUtils.mkpath(junit[/^[^\/]+/])
