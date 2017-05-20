@@ -28,9 +28,11 @@ RSpec.configure do |config|
                end
 
     BasePage.browser = @browser
-    unless ENV['NO_HEROKU'] == 'true'
-      BasePage.base_site = 'https://address-book-example.herokuapp.com'
-    end
+    BasePage.base_url = if ENV['NO_HEROKU'] == 'true'
+                          "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
+                        else
+                          'https://address-book-example.herokuapp.com'
+                        end
   end
 
   config.after(:each) do |example|

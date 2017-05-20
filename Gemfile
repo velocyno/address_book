@@ -47,7 +47,7 @@ group :development, :test do
   gem 'rspec', '~> 3.5.0'
   gem 'rspec-rails'
   gem 'watir', '~> 6.0'
-  gem 'watir_drops'
+  gem 'watir_drops', ['~> 0.7', '> 0.7.0']
   gem 'watir_model'
   gem 'require_all'
   gem 'parallel_split_test'

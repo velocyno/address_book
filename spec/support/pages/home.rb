@@ -1,6 +1,6 @@
 class Home < BasePage
 
-  page_url { '/' }
+  page_url { BasePage.base_url }
 
   element(:sign_in) { browser.a(data_test: 'sign-in') }
 

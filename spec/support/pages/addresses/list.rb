@@ -1,7 +1,7 @@
 module Addresses
   class List < BasePage
 
-    page_url { "/addresses" }
+    page_url { "#{BasePage.base_url}/addresses" }
 
     element(:create) { browser.a(data_test: 'create') }
     elements(:addresses) { browser.tbody.wait_until(&:present?).trs }

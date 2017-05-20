@@ -9,7 +9,7 @@ module Test
       payload = {"user[email]" => user.email,
                  "user[password]" => user.password}
 
-      call = {url: "#{base_site}/users",
+      call = {url: "#{BasePage.base_url}/users",
               method: :post,
               payload: payload}
 
@@ -47,7 +47,7 @@ module Test
         hash["address[#{key}]"] = address.send key
       end
 
-      call = {url: "#{base_site}/addresses",
+      call = {url: "#{BasePage.base_url}/addresses",
               method: :post,
               payload: payload,
               headers: headers}
@@ -67,14 +67,6 @@ module Test
       session_cookie = cookies.find { |cookie| cookie[:name] == "_address_book_session" }
       session = session_cookie.nil? ? '' : session_cookie[:value]
       {'Cookie' => "remember_token=#{remember}; address_book_session=#{session}"}
-    end
-
-    def base_site
-      if BasePage.base_site.empty?
-        "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
-      else
-        BasePage.base_site
-      end
     end
 
   end

@@ -1,6 +1,6 @@
 class SignUp < BasePage
 
-  page_url { "/sign_up" }
+  page_url { "#{BasePage.base_url}/sign_up" }
 
   element(:email) { browser.text_field(id: "user_email") }
   element(:password) { browser.text_field(id: "user_password") }

@@ -1,7 +1,7 @@
 module Addresses
   class Show < BasePage
 
-    page_url { |address| "/addresses/#{address.id}" }
+    page_url { |address| "#{BasePage.base_url}/addresses/#{address.id}" }
 
     element(:list, required: true) { browser.a(data_test: 'list') }
     element(:edit) { browser.a(data_test: 'edit') }

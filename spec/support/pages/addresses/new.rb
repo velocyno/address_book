@@ -1,7 +1,7 @@
 module Addresses
   class New < BasePage
 
-    page_url(required: true) { "/addresses/new" }
+    page_url(required: true) { "#{BasePage.base_url}/addresses/new" }
 
     element(:first_name) { browser.text_field(id: 'address_first_name') }
     element(:last_name) { browser.text_field(id: 'address_last_name') }

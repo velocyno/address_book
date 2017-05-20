@@ -212,7 +212,7 @@ GEM
       rack
       rails
       watir (>= 6.0.0.beta4)
-    watir_drops (0.7.0)
+    watir_drops (0.7.1)
       watir (~> 6.0)
     watir_model (0.3.0)
     web-console (3.5.1)
@@ -256,7 +256,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   watir (~> 6.0)
   watir-rails
-  watir_drops
+  watir_drops (~> 0.7, > 0.7.0)
   watir_model
   web-console (>= 3.3.0)
 
