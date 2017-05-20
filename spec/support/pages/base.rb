@@ -16,7 +16,13 @@ class BasePage < WatirDrops::PageObject
       page.goto(*args)
       exception = Selenium::WebDriver::Error::WebDriverError
       message = "Expected to be on #{page.class}, but conditions not met"
-      raise exception, message if page.page_verifiable? && !page.on_page?
+      if page.page_verifiable?
+        begin
+          page.wait_until(&:on_page?)
+        rescue Watir::Wait::TimeoutError
+          raise exception, message
+        end
+      end
     end
   end
 
@@ -26,6 +32,26 @@ class BasePage < WatirDrops::PageObject
     define_method("page_url") do |*args|
       "#{self.class.base_site}#{yield(*args)}"
     end
+  end
+
+  def on_page?
+    exception = Selenium::WebDriver::Error::WebDriverError
+    message = "Can not verify page without any requirements set"
+    raise exception, message unless page_verifiable?
+
+    if self.class.require_url && page_url.gsub("#{URI.parse(page_url).scheme}://", '') != browser.url.gsub("#{URI.parse(browser.url).scheme}://", '')
+      return false
+    end
+
+    if self.respond_to?(:page_title) && browser.title != page_title
+      return false
+    end
+
+    if !self.class.required_element_list.empty? && self.class.required_element_list.any? { |e| !send(e).present? }
+      return false
+    end
+
+    true
   end
 
   def goto(*args)

@@ -1,7 +1,7 @@
 module Addresses
   class New < BasePage
 
-    page_url { "/addresses/new" }
+    page_url(required: true) { "/addresses/new" }
 
     element(:first_name) { browser.text_field(id: 'address_first_name') }
     element(:last_name) { browser.text_field(id: 'address_last_name') }
@@ -18,10 +18,6 @@ module Addresses
       submit.click
       browser.wait_while { on_page? }
       address.tap { |a| a.id = browser.url[/\d+$/] }
-    end
-
-    def on_page?
-      browser.url == page_url
     end
 
   end

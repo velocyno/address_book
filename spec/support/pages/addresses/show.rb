@@ -3,7 +3,7 @@ module Addresses
 
     page_url { |address| "/addresses/#{address.id}" }
 
-    element(:list) { browser.a(data_test: 'list') }
+    element(:list, required: true) { browser.a(data_test: 'list') }
     element(:edit) { browser.a(data_test: 'edit') }
 
     element(:notice) { browser.div(data_test: 'notice') }
@@ -39,10 +39,6 @@ module Addresses
         hash[sym] = send(sym).text
       end
       Test::Address.new hash
-    end
-
-    def on_page?
-      list.present?
     end
 
   end
