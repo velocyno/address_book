@@ -12,6 +12,7 @@ describe "Test in Parallel" do
 
   it 'signs out' do
     Test::AddressBook.new.log_in_user
+    Home.visit
     NavBar.new.sign_out_user
     expect(NavBar.new.logged_in?).to eq false
   end
@@ -32,7 +33,7 @@ describe "Test in Parallel" do
   it 'displays specific address' do
     Test::AddressBook.new.log_in_user
     address = Test::AddressBook.new.create_address
-    expect(Addresses::Show.new.address?(address)).to eq true
+    expect(Addresses::Show.visit(address).address?(address)).to eq true
   end
 
   it 'displays address list' do

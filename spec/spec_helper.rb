@@ -1,4 +1,6 @@
 ENV['RAILS_ENV'] ||= 'test'
+
+
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'watir/rails'
@@ -16,10 +18,16 @@ RSpec.configure do |config|
   config.include Test
 
   config.before(:each) do |test|
-    #@browser = initialize_driver(test.full_description)
-    @browser = Watir::Browser.new
+    @browser = if ENV['USE_SAUCE'] == 'true'
+                 initialize_driver(test.full_description)
+               else
+                 Watir::Browser.new
+               end
+
     BasePage.browser = @browser
-    BasePage.base_site = 'https://address-book-example.herokuapp.com'
+    unless ENV['NO_HEROKU'] == 'true'
+      BasePage.base_site = 'https://address-book-example.herokuapp.com'
+    end
   end
 
   config.after(:each) do |example|
