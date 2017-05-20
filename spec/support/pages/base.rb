@@ -5,6 +5,9 @@ class BasePage < WatirDrops::PageObject
   end
 
   def self.base_site
+    if !defined?(@@base_site) && defined?(Watir::Rails)
+      @@base_site = "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
+    end
     @@base_site ||= ''
   end
 

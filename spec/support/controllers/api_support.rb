@@ -31,8 +31,8 @@ module Test
       call = {url: p,
               method: :get,
               headers: headers}
-      RestClient::Request.execute(call) do |response, request, result|
-        return false if response.code == 404
+      RestClient::Request.execute(call) do |response, _request, result|
+        return false if [404, 500].include? response.code
         doc = Nokogiri::XML(result.body)
         h = Test::Address.keys.each_with_object({}) do |key, hash|
           hash[key] = doc.at_css("span[data-test='#{key}']").text.strip
@@ -64,7 +64,8 @@ module Test
     def headers
       cookies = browser.cookies.to_a
       remember = cookies.find { |cookie| cookie[:name] == "remember_token" }[:value]
-      session = cookies.find { |cookie| cookie[:name] == "_address_book_session" }[:value]
+      session_cookie = cookies.find { |cookie| cookie[:name] == "_address_book_session" }
+      session = session_cookie.nil? ? '' : session_cookie[:value]
       {'Cookie' => "remember_token=#{remember}; address_book_session=#{session}"}
     end
 
