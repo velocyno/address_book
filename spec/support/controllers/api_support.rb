@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 module Test
   module APISupport
 
@@ -7,7 +9,7 @@ module Test
       payload = {"user[email]" => user.email,
                  "user[password]" => user.password}
 
-      call = {url: "#{BasePage.base_site}/users",
+      call = {url: "#{base_site}/users",
               method: :post,
               payload: payload}
 
@@ -25,9 +27,7 @@ module Test
     end
 
     def address_present?(address)
-      cookies = browser.cookies.to_a
       p = Addresses::Show.new.page_url(address)
-      headers = {'Cookie' => "remember_token=#{cookies.last[:value]}; address_book_session=#{cookies.first[:value]}"}
       call = {url: p,
               method: :get,
               headers: headers}
@@ -47,7 +47,7 @@ module Test
         hash["address[#{key}]"] = address.send key
       end
 
-      call = {url: "#{BasePage.base_site}/addresses",
+      call = {url: "#{base_site}/addresses",
               method: :post,
               payload: payload,
               headers: headers}
@@ -63,7 +63,17 @@ module Test
 
     def headers
       cookies = browser.cookies.to_a
-      {'Cookie' => "remember_token=#{cookies.first[:value]}; address_book_session=#{cookies.last[:value]}"}
+      remember = cookies.find { |cookie| cookie[:name] == "remember_token" }[:value]
+      session = cookies.find { |cookie| cookie[:name] == "_address_book_session" }[:value]
+      {'Cookie' => "remember_token=#{remember}; address_book_session=#{session}"}
+    end
+
+    def base_site
+      if BasePage.base_site.empty?
+        "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
+      else
+        BasePage.base_site
+      end
     end
 
   end

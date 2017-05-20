@@ -1,9 +1,12 @@
 ENV['RAILS_ENV'] ||= 'test'
+ENV['USE_SAUCE'] ||= 'true'
+ENV['NO_HEROKU'] ||= 'false'
+ENV['NO_API'] ||= 'false'
 
-
-require File.expand_path('../../config/environment', __FILE__)
-require 'rspec/rails'
-require 'watir/rails'
+if ENV['NO_HEROKU'] == 'true'
+  require File.expand_path('../../config/environment', __FILE__)
+  require 'rspec/rails'
+end
 
 require "watir_drops"
 require "watir_model"
