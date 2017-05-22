@@ -10,7 +10,6 @@ end
 
 require "watir_drops"
 require "watir_model"
-require "sauce_whisk"
 require 'require_all'
 
 require_rel "support"
