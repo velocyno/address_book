@@ -1,8 +1,8 @@
-require 'faker'
-
 module Test
   class User < BaseModel
-    key(:email_address) { Faker::Internet.email }
-    key(:password) { Faker::Internet.password }
+
+    key(:email_address) { Defaults.translate :email_address }
+    key(:password) { Defaults.translate :password }
+
   end
 end
