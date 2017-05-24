@@ -1,4 +1,5 @@
 require "spec_helper"
+
 describe "Test in Parallel" do
 
   let(:user) { Test::User.new }
@@ -56,6 +57,7 @@ describe "Test in Parallel" do
   it 'edits' do
     SignUp.visit.submit_form
     Addresses::New.visit.submit_form(address)
+    Addresses::Show.new.update_address(address)
 
     edited_address = Addresses::Edit.visit(address).submit_form
 

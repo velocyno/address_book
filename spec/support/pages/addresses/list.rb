@@ -3,6 +3,7 @@ module Addresses
 
     page_url { "#{BasePage.base_url}/addresses" }
 
+
     element(:create) { browser.a(data_test: 'create') }
     elements(:addresses) { browser.tbody.wait_until(&:present?).trs }
     element(:show) { |index = 0| browser.td(text: 'Show', index: index) }
@@ -10,7 +11,7 @@ module Addresses
     element(:delete) { |index = 0| browser.td(text: 'Destroy', index: index) }
     element(:notice) { browser.div(data_test: 'notice') }
 
-    def new_address_link
+    def follow_new_address
       create.click
     end
 

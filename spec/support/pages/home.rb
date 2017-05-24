@@ -5,9 +5,18 @@ class Home < BasePage
   element(:current_user) { browser.span(data_test: 'current-user') }
   element(:sign_out) { browser.a(data_test: 'sign-out') }
   element(:sign_in) { browser.a(data_test: 'sign-in') }
+  element(:addresses) { browser.a(data_test: 'addresses') }
 
-  def sign_in_link
+  def follow_sign_in
     sign_in.click
+  end
+
+  def follow_sign_up
+    sign_up.click
+  end
+
+  def follow_address
+    addresses.click
   end
 
   def signed_in_user

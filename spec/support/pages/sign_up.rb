@@ -12,6 +12,5 @@ class SignUp < BasePage
     submit.click
     user
   end
+
 end
-
-

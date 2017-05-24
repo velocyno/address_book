@@ -5,7 +5,7 @@ describe "Test in Series" do
   let(:browser) { @browser }
 
   it "Runs in serial with Watir" do
-    browser.goto "https://address-book-example.herokuapp.com"
+    browser.goto "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
     browser.a(data_test: 'sign-in').click
     browser.a(data_test: 'sign-up').click
     email = "#{rand 10000000}@example.com"
@@ -24,7 +24,7 @@ describe "Test in Series" do
     browser.a(data_test: 'create').click
     browser.text_field(id: 'address_first_name').send_keys "First"
     browser.text_field(id: 'address_last_name').send_keys "Last"
-    browser.text_field(id: 'address_line_1').send_keys "123 Main"
+    browser.text_field(id: 'address_street_address').send_keys "123 Main"
     browser.text_field(id: 'address_city').send_keys "London"
     browser.text_field(id: 'address_state').send_keys "Confusion"
     browser.text_field(id: 'address_zip_code').send_keys "0"

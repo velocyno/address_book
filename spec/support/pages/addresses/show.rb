@@ -5,7 +5,6 @@ module Addresses
 
     element(:list, required: true) { browser.a(data_test: 'list') }
     element(:edit) { browser.a(data_test: 'edit') }
-
     element(:notice) { browser.div(data_test: 'notice') }
     element(:first_name) { browser.span(data_test: 'first_name') }
     element(:last_name) { browser.span(data_test: 'last_name') }
@@ -14,12 +13,13 @@ module Addresses
     element(:city) { browser.span(data_test: 'city') }
     element(:state) { browser.span(data_test: 'state') }
     element(:zip_code) { browser.span(data_test: 'zip_code') }
-    element(:country) { browser.span(data_test: 'country') }
-    element(:birthday) { browser.span(data_test: 'birthday') }
-    element(:note) { browser.span(data_test: 'note') }
 
     def follow_list
       list.click
+    end
+
+    def follow_edit
+      edit.click
     end
 
     def updated_message?
@@ -39,6 +39,10 @@ module Addresses
         hash[sym] = send(sym).text
       end
       Test::Address.new hash
+    end
+
+    def update_address(address)
+      address.tap { |a| a.id = browser.url[/\d*$/] }
     end
 
   end

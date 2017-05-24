@@ -3,20 +3,20 @@ require "spec_helper"
 describe "Test in Series" do
 
   it 'Uses Page objects' do
-    Home.visit.sign_in_link
-    SignIn.new.sign_up_link
+    Home.visit.follow_sign_in
+    SignIn.new.follow_sign_up
     user = Test::User.new
     SignUp.new.submit_form(user)
-    expect(NavBar.new.signed_in_user).to eq user.email
+    expect(Home.new.signed_in_user).to eq user.email_address
 
-    NavBar.new.sign_out_user
-    expect(NavBar.new.logged_in?).to eq false
+    Home.new.sign_out_user
+    expect(Home.new.logged_in?).to eq false
 
     SignIn.new.submit_form(user)
-    expect(NavBar.new.logged_in?).to eq true
+    expect(Home.new.logged_in?).to eq true
 
-    NavBar.new.addresses_link
-    Addresses::List.new.new_address_link
+    Home.new.follow_address
+    Addresses::List.new.follow_new_address
     address = Addresses::New.new.submit_form
     expect(Addresses::Show.new.created_message?).to eq true
     expect(Addresses::Show.new.address?(address)).to eq true

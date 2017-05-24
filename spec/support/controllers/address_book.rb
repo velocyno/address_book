@@ -5,6 +5,7 @@ module Test
       WatirDrops::PageObject.browser
     end
 
+
     def create_user(user = nil)
       user ||= Test::User.new
 
@@ -34,6 +35,7 @@ module Test
     end
 
     def address?(address)
+      update_address_id(address) unless address.id
       p = Addresses::Show.new.page_url(address)
       call = {url: p,
               method: :get,
@@ -76,5 +78,23 @@ module Test
       {'Cookie' => "remember_token=#{remember}; address_book_session=#{session}"}
     end
 
+    def update_address_id(address)
+      p = Addresses::List.new.page_url
+      call = {url: p,
+              method: :get,
+              headers: headers}
+      RestClient::Request.execute(call) do |response, _request, result|
+        return false if [404, 500].include? response.code
+        doc = Nokogiri::XML(result.body)
+
+        addresses = doc.css("tbody tr").map { |r| r.css('td').map(&:text) }
+        index = addresses.find_index do |display|
+          display.include?(address.first_name) && display.include?(address.last_name)
+        end
+
+        id = doc.css("a[data-test^='show']")[index].attributes['data-test'].text[/\d+$/]
+        address.tap { |a| a.id = id}
+      end
+    end
   end
 end
