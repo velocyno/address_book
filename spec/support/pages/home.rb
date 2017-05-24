@@ -11,6 +11,7 @@ class Home < BasePage
   end
 
   def signed_in_user
+    return nil if sign_in.present?
     current_user.text
   end
 
