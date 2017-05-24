@@ -220,6 +220,9 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webdrivers (2.4.0)
+      nokogiri (~> 1.6)
+      rubyzip (~> 1.0)
     websocket (1.2.4)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
@@ -259,6 +262,7 @@ DEPENDENCIES
   watir_drops (~> 0.7, > 0.7.0)
   watir_model
   web-console (>= 3.3.0)
+  webdrivers
 
 BUNDLED WITH
-   1.14.6
+   1.15.0
