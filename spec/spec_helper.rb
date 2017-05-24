@@ -17,10 +17,12 @@ require_rel "support/pages"
 
 require_rel "support/sauce_helpers" if ENV['USE_SAUCE'] == 'true'
 
+include AddressBook
+include Page
+
 RSpec.configure do |config|
 
   config.include SauceHelpers if ENV['USE_SAUCE'] == 'true'
-  config.include Test
 
   config.before(:each) do |test|
     @browser = if ENV['USE_SAUCE'] == 'true'
@@ -29,12 +31,12 @@ RSpec.configure do |config|
                  Watir::Browser.new
                end
 
-    BasePage.browser = @browser
-    BasePage.base_url = if ENV['NO_HEROKU'] == 'true'
-                          "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
-                        else
-                          'https://address-book-example.herokuapp.com'
-                        end
+    Base.browser = @browser
+    Site.base_url = if ENV['NO_HEROKU'] == 'true'
+                      "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
+                    else
+                      'https://address-book-example.herokuapp.com'
+                    end
   end
 
   config.after(:each) do |example|

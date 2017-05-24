@@ -1,7 +1,7 @@
-module Addresses
-  class New < BasePage
+module AddressBook
+  class AddressNew < Page::Base
 
-    page_url { "#{BasePage.base_url}/addresses/new" }
+    page_url { "#{Site.base_url}/addresses/new" }
 
 
     element(:first_name) { browser.text_field(id: 'address_first_name') }
@@ -14,7 +14,7 @@ module Addresses
     element(:submit) { browser.button(visible: true) }
 
     def submit_form(address = nil)
-      address ||= Test::Address.new
+      address ||= Data::Address.new
       fill_form(address)
       submit.click
       address

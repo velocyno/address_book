@@ -1,13 +1,7 @@
-class BasePage < WatirDrops::PageObject
+module AddressBook
+  module Page
+    class Base < WatirDrops::PageObject
 
-  class << self
-    def base_url=(base_url)
-      @@base_url = base_url
-    end
-
-    def base_url
-      @@base_url
     end
   end
-
 end

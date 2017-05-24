@@ -1,7 +1,7 @@
-module Addresses
-  class List < BasePage
+module AddressBook
+  class AddressList < Page::Base
 
-    page_url { "#{BasePage.base_url}/addresses" }
+    page_url { "#{Site.base_url}/addresses" }
 
 
     element(:create) { browser.a(data_test: 'create') }
@@ -31,7 +31,7 @@ module Addresses
       browser.alert.ok
     end
 
-    def present?(address)
+    def address?(address)
       !address_index(address).nil?
     end
 

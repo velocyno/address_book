@@ -1,7 +1,7 @@
-module Addresses
-  class Show < BasePage
+module AddressBook
+  class AddressShow < Page::Base
 
-    page_url { |address| "#{BasePage.base_url}/addresses/#{address.id}" }
+    page_url { |address| "#{Site.base_url}/addresses/#{address.id}" }
 
     element(:list, required: true) { browser.a(data_test: 'list') }
     element(:edit) { browser.a(data_test: 'edit') }
@@ -35,10 +35,10 @@ module Addresses
     end
 
     def to_address
-      hash = Test::Address.keys.each_with_object({}) do |sym, hash|
+      parsed = Data::Address.keys.each_with_object({}) do |sym, hash|
         hash[sym] = send(sym).text
       end
-      Test::Address.new hash
+      Data::Address.new parsed
     end
 
     def update_address(address)

@@ -1,8 +1,10 @@
-module Test
-  class User < BaseModel
+module AddressBook
+  module Data
+    class User < Base
 
-    key(:email_address) { Defaults.translate :email_address }
-    key(:password) { Defaults.translate :password }
+      key(:email_address) { Defaults.translate :email_address }
+      key(:password) { Defaults.translate :password }
 
+    end
   end
 end
