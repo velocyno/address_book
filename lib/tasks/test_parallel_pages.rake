@@ -6,7 +6,7 @@ unless Rails.env.production?
   @success = true
 
   task :test_parallel_pages do
-    ENV['BUILD_TAG'] += "-#{ENV['TEST_RUNNER']}" if ENV['BUILD_TAG']
+    ENV['BUILD_TAG'] ||= "Parallel with Pages - #{Time.now.to_i}"
     junit = 'junit_reports/test'
     FileUtils.mkpath(junit[/^[^\/]+/])
     begin

@@ -1,7 +1,7 @@
 require "spec_helper"
 
 module AddressBook
-  describe "Test in Parallel" do
+  describe "Test in Parallel with APIs" do
 
     let(:user) { Data::User.new }
     let(:address) { Data::Address.new }
