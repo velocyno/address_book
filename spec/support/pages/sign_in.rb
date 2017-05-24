@@ -1,22 +1,24 @@
-class SignIn < BasePage
+module AddressBook
+  class SignIn < AddressBook::Base
 
-  page_url { "#{BasePage.base_url}/sign_in" }
+    page_url { "#{AddressBook::Base.base_url}/sign_in" }
 
-  element(:sign_up) { browser.a(data_test: 'sign-up') }
-  element(:email) { browser.text_field(id: "session_email") }
-  element(:password) { browser.text_field(id: "session_password") }
-  element(:submit) { browser.button(data_test: 'submit') }
 
-  def submit_form(user = nil)
-    user ||= Test::User.new
-    fill_form(user)
-    submit.click
+    element(:email_address) { browser.text_field(id: "session_email") }
+    element(:password) { browser.text_field(id: "session_password") }
+    element(:submit) { browser.button(visible: true) }
+    element(:sign_up) { browser.a(data_test: 'sign-up') }
+
+    def submit_form(user = nil)
+      user ||= AddressBook::Data::User.new
+      fill_form(user)
+      submit.click
+      user
+    end
+
+    def follow_sign_up
+      sign_up.click
+    end
+
   end
-
-  def sign_up_link
-    sign_up.click
-  end
-
 end
-
-
