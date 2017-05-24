@@ -6,7 +6,7 @@ unless Rails.env.production?
   @success = true
 
   task :test_parallel_api do
-    ENV['BUILD_TAG'] ||= "Parallel with API - #{Time.now.to_i}"
+    ENV['BUILD_TAG'] = "Parallel with API - #{Time.now.to_i}"
     junit = 'junit_reports/test'
     FileUtils.mkpath(junit[/^[^\/]+/])
     begin

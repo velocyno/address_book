@@ -1,8 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 ENV['USE_SAUCE'] ||= 'false'
-ENV['NO_HEROKU'] ||= 'true'
+ENV['HEROKU'] ||= 'true'
 
-if ENV['NO_HEROKU'] == 'true'
+if ENV['HEROKU'] != 'true'
   require File.expand_path('../../config/environment', __FILE__)
   require 'rspec/rails'
 end
@@ -32,7 +32,7 @@ RSpec.configure do |config|
                end
 
     Base.browser = @browser
-    Site.base_url = if ENV['NO_HEROKU'] == 'true'
+    Site.base_url = if ENV['HEROKU'] != 'true'
                       "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
                     else
                       'https://address-book-example.herokuapp.com'

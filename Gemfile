@@ -54,6 +54,7 @@ group :development, :test do
   gem 'sauce_whisk'
   gem 'faker'
   gem 'data_magic'
+  gem 'webdrivers'
 end
 
 group :development do

@@ -1,4 +1,5 @@
 require 'data_magic/standard_translation'
+require 'faker'
 
 module AddressBook
   module Data

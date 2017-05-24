@@ -1,4 +1,5 @@
 require "spec_helper"
+require "nokogiri"
 
 module AddressBook
   describe "Test in Parallel with APIs" do
