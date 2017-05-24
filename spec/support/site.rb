@@ -1,10 +1,5 @@
 module Test
-  class AddressBook
-
-    def browser
-      WatirDrops::PageObject.browser
-    end
-
+  class Site
 
     def create_user(user = nil)
       user ||= Test::User.new
@@ -25,7 +20,7 @@ module Test
     def log_in_user(user = nil)
       Home.visit
       create_user(user)
-      browser.cookies.add 'remember_token', @remember_token
+      BasePage.browser.cookies.add 'remember_token', @remember_token
       user
     end
 

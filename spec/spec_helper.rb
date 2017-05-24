@@ -11,7 +11,7 @@ require "watir_drops"
 require "watir_model"
 require 'require_all'
 
-require_rel "support/controllers"
+require_rel "support/site"
 require_rel "support/data"
 require_rel "support/pages"
 
