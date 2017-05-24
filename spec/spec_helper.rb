@@ -1,7 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
-ENV['USE_SAUCE'] ||= 'true'
-ENV['NO_HEROKU'] ||= 'false'
-ENV['NO_API'] ||= 'false'
+ENV['USE_SAUCE'] ||= 'false'
+ENV['NO_HEROKU'] ||= 'true'
+ENV['NO_API'] ||= 'true'
 
 if ENV['NO_HEROKU'] == 'true'
   require File.expand_path('../../config/environment', __FILE__)
