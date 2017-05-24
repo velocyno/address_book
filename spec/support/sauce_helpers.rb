@@ -1,8 +1,10 @@
+require 'sauce_whisk'
+
 module SauceHelpers
-  def initialize_driver(name)
-    @name = name
+  def initialize_driver(name = nil)
+    @name = name || "Unknown Test at #{Time.now.to_i}"
     capabilities = {name: @name,
-                    build: ENV['BUILD_TAG'] ||= "Unknown Build - #{Time.now.to_i}"}
+                    build: ENV['BUILD_TAG'] ||= "Unknown Build at #{Time.now.to_i}"}
     capabilities[:browserName] = ENV['browserName'] || :chrome
 
     capabilities[:platform] = ENV['platform'] if ENV['platform']

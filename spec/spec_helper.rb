@@ -9,14 +9,17 @@ end
 
 require "watir_drops"
 require "watir_model"
-require "sauce_whisk"
 require 'require_all'
 
-require_rel "support"
+require_rel "support/controllers"
+require_rel "support/data"
+require_rel "support/pages"
+
+require_rel "support/sauce_helpers" if ENV['USE_SAUCE'] == 'true'
 
 RSpec.configure do |config|
 
-  config.include SauceHelpers
+  config.include SauceHelpers if ENV['USE_SAUCE'] == 'true'
   config.include Test
 
   config.before(:each) do |test|
