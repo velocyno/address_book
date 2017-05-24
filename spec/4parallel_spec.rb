@@ -1,61 +1,61 @@
 require "spec_helper"
-
 describe "Test in Parallel" do
 
+  let(:user) { Test::User.new }
+  let(:address) { Test::Address.new }
+
   it 'signs up' do
-    Home.visit.sign_in_link
-    SignIn.new.sign_up_link
-    user = Test::User.new
-    SignUp.new.submit_form(user)
-    expect(NavBar.new.signed_in_user).to eq user.email
+    SignUp.visit.submit_form(user)
+    expect(Home.new.signed_in_user).to eq user.email_address
   end
 
-  it 'signs out' do
-    Test::AddressBook.new.log_in_user
-    Home.visit
-    NavBar.new.sign_out_user
-    expect(NavBar.new.logged_in?).to eq false
-  end
+  it 'login' do
+    SignUp.visit.submit_form(user)
+    Home.new.sign_out_user
 
-  it 'signs in' do
-    user = Test::AddressBook.new.create_user
     SignIn.visit.submit_form(user)
-    expect(NavBar.new.logged_in?).to eq true
+    expect(Home.new.logged_in?).to eq true
+  end
+
+  it 'logout' do
+    SignUp.visit.submit_form(user)
+    Home.new.sign_out_user
+    expect(Home.new.logged_in?).to eq false
   end
 
   it 'creates address' do
-    Test::AddressBook.new.log_in_user
-    address = Addresses::New.visit.submit_form
+    SignUp.visit.submit_form
+    Addresses::New.visit.submit_form(address)
     expect(Addresses::Show.new.created_message?).to eq true
-    expect(Test::AddressBook.new.address_present?(address)).to eq true
+    expect(Addresses::Show.new.address?(address)).to eq true
   end
 
-  it 'displays specific address' do
-    Test::AddressBook.new.log_in_user
-    address = Test::AddressBook.new.create_address
+  it 'shows' do
+    SignUp.visit.submit_form
+    Test::AddressBook.new.create_address(address)
     expect(Addresses::Show.visit(address).address?(address)).to eq true
   end
 
-  it 'displays address list' do
+  it 'lists' do
     Test::AddressBook.new.log_in_user
     address = Test::AddressBook.new.create_address
     expect(Addresses::List.visit.present?(address)).to eq true
   end
 
-  it 'edits address' do
-    Test::AddressBook.new.log_in_user
-    address = Test::AddressBook.new.create_address
+  it 'edits' do
+    SignUp.visit.submit_form
+    Addresses::New.visit.submit_form(address)
     edited_address = Addresses::Edit.visit(address).submit_form
     expect(Addresses::Show.new.updated_message?).to eq true
-    expect(Test::AddressBook.new.address_present?(edited_address)).to eq true
+    expect(Addresses::Show.new.address?(edited_address)).to eq true
   end
 
   it 'deletes address' do
-    Test::AddressBook.new.log_in_user
-    address = Test::AddressBook.new.create_address
+    SignUp.visit.submit_form
+    Test::AddressBook.new.create_address(address)
     Addresses::List.visit.destroy(address)
     expect(Addresses::List.new.destroyed_message?).to eq true
-    expect(Test::AddressBook.new.address_present?(address)).to eq false
+    expect(Addresses::List.new.present?(address)).to eq false
   end
 
 end
