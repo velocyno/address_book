@@ -1,19 +1,17 @@
-module AddressBook
-  class SignUp < AddressBook::Base
+class SignUp < BasePage
 
-    page_url { "#{AddressBook::Base.base_url}/sign_up" }
+  page_url { "#{BasePage.base_url}/sign_up" }
 
+  element(:email) { browser.text_field(id: "user_email") }
+  element(:password) { browser.text_field(id: "user_password") }
+  element(:submit) { browser.button(data_test: 'submit') }
 
-    element(:email_address) { browser.text_field(id: "user_email") }
-    element(:password) { browser.text_field(id: "user_password") }
-    element(:submit) { browser.button(visible: true) }
-
-    def submit_form(user = nil)
-      user ||= AddressBook::Data::User.new
-      fill_form(user)
-      submit.click
-      user
-    end
-
+  def submit_form(user = nil)
+    user ||= Test::User.new
+    fill_form(user)
+    submit.click
+    user
   end
 end
+
+

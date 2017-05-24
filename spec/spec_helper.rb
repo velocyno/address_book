@@ -1,6 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
-ENV['USE_SAUCE'] ||= 'false'
-ENV['BASE_SITE'] ||= 'rails'
+ENV['USE_SAUCE'] ||= 'true'
+ENV['NO_HEROKU'] ||= 'false'
+ENV['NO_API'] ||= 'false'
 
 if ENV['NO_HEROKU'] == 'true'
   require File.expand_path('../../config/environment', __FILE__)
@@ -9,19 +10,15 @@ end
 
 require "watir_drops"
 require "watir_model"
+require "sauce_whisk"
 require 'require_all'
 
-require_rel "support/site"
-require_rel "support/data"
-require_rel "support/pages"
-
-require_rel "support/sauce_helpers" if ENV['USE_SAUCE'] == 'true'
-
-include AddressBook
+require_rel "support"
 
 RSpec.configure do |config|
 
-  config.include SauceHelpers if ENV['USE_SAUCE'] == 'true'
+  config.include SauceHelpers
+  config.include Test
 
   config.before(:each) do |test|
     @browser = if ENV['USE_SAUCE'] == 'true'
@@ -30,15 +27,12 @@ RSpec.configure do |config|
                  Watir::Browser.new
                end
 
-    AddressBook::Base.browser = @browser
-    AddressBook::Base.base_url = case ENV['BASE_SITE']
-                                 when 'local'
-                                   'http://localhost:3000'
-                                 when 'heroku'
-                                   'https://address-book-example.herokuapp.com'
-                                 else
-                                   "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
-                                 end
+    BasePage.browser = @browser
+    BasePage.base_url = if ENV['NO_HEROKU'] == 'true'
+                          "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
+                        else
+                          'https://address-book-example.herokuapp.com'
+                        end
   end
 
   config.after(:each) do |example|

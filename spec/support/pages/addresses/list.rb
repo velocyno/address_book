@@ -1,8 +1,7 @@
-module AddressBook::Address
-  class List < AddressBook::Base
+module Addresses
+  class List < BasePage
 
-    page_url { "#{AddressBook::Base.base_url}/addresses" }
-
+    page_url { "#{BasePage.base_url}/addresses" }
 
     element(:create) { browser.a(data_test: 'create') }
     elements(:addresses) { browser.tbody.wait_until(&:present?).trs }

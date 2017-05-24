@@ -1,20 +1,15 @@
 require 'nokogiri'
 
-module AddressBook
-  class Site
-
-    def browser
-      WatirDrops::PageObject.browser
-    end
-
+module Test
+  module APISupport
 
     def create_user(user = nil)
-      user ||= AddressBook::Data::User.new
+      user ||= Test::User.new
 
-      payload = {"user[email]" => user.email_address,
+      payload = {"user[email]" => user.email,
                  "user[password]" => user.password}
 
-      call = {url: "#{AddressBook::Base.base_url}/users",
+      call = {url: "#{BasePage.base_url}/users",
               method: :post,
               payload: payload}
 
@@ -32,27 +27,27 @@ module AddressBook
     end
 
     def address_present?(address)
-      p = AddressBook::Address::Show.new.page_url(address)
+      p = Addresses::Show.new.page_url(address)
       call = {url: p,
               method: :get,
               headers: headers}
       RestClient::Request.execute(call) do |response, _request, result|
         return false if [404, 500].include? response.code
         doc = Nokogiri::XML(result.body)
-        h = AddressBook::Data::Address.keys.each_with_object({}) do |key, hash|
+        h = Test::Address.keys.each_with_object({}) do |key, hash|
           hash[key] = doc.at_css("span[data-test='#{key}']").text.strip
         end
-        AddressBook::Data::Address.new(h) == address
+        Test::Address.new(h) == address
       end
     end
 
     def create_address(address = nil)
-      address ||= Data::Address.new
-      payload = address.keys.each_with_object({}) do |key, hash|
+      address ||= Test::Address.new
+      payload = Test::Address.keys.each_with_object({}) do |key, hash|
         hash["address[#{key}]"] = address.send key
       end
 
-      call = {url: "#{Base.base_url}/addresses",
+      call = {url: "#{BasePage.base_url}/addresses",
               method: :post,
               payload: payload,
               headers: headers}

@@ -53,8 +53,6 @@ group :development, :test do
   gem 'parallel_split_test'
   gem 'sauce_whisk'
   gem 'faker'
-  gem 'webdrivers'
-  gem 'data_magic'
 end
 
 group :development do

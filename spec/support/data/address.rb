@@ -1,15 +1,14 @@
-module AddressBook
-  module Data
-    class Address < Base
+require 'faker'
 
-      key(:first_name) { Defaults.translate :first_name }
-      key(:last_name) { Defaults.translate :last_name }
-      key(:street_address) { Defaults.translate :street_address }
-      key(:secondary_address) { Defaults.translate :secondary_address }
-      key(:city) { Defaults.translate :city }
-      key(:state) { Defaults.translate :state }
-      key(:zip_code) { Defaults.translate :zip_code }
-
-    end
+module Test
+  class Address < BaseModel
+    key(:first_name) { Faker::Name.first_name }
+    key(:last_name) { Faker::Name.last_name }
+    key(:line_1) { Faker::Address.street_address }
+    key(:line_1) { Faker::Address.secondary_address }
+    key(:city) { Faker::Address.city }
+    key(:state) { Faker::Address.state }
+    key(:zip_code) { Faker::Address.zip_code }
+    key(:note) { "Hi Mom" }
   end
 end

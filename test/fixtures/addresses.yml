@@ -3,8 +3,8 @@
 one:
   first_name: MyString
   last_name: MyString
-  street_address: MyString
-  secondary_address: MyString
+  line_1: MyString
+  line_2: MyString
   city: MyString
   state: MyString
   zip_code: MyString
@@ -15,8 +15,8 @@ one:
 two:
   first_name: MyString
   last_name: MyString
-  street_address: MyString
-  secondary_address: MyString
+  line_1: MyString
+  line_2: MyString
   city: MyString
   state: MyString
   zip_code: MyString

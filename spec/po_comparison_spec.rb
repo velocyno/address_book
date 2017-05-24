@@ -7,8 +7,8 @@ describe "Test in Parallel" do
     2.times { Test::AddressBook.new.create_address }
     address = Test::AddressBook.new.create_address
     2.times { Test::AddressBook.new.create_address }
-    AddressBook::Address::List.visit.destroy(address)
-    expect(AddressBook::Address::List.new.destroyed_message?).to eq true
+    Addresses::List.visit.destroy(address)
+    expect(Addresses::List.new.destroyed_message?).to eq true
     expect(Test::AddressBook.new.address_present?(address)).to eq false
   end
 

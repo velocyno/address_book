@@ -6,11 +6,12 @@ unless Rails.env.production?
   @success = true
 
   task :test_parallel_api do
+    ENV['NO_API'] = 'false'
     ENV['BUILD_TAG'] += "-#{ENV['TEST_RUNNER']}" if ENV['BUILD_TAG']
     junit = 'junit_reports/test'
     FileUtils.mkpath(junit[/^[^\/]+/])
     begin
-      @result = system "parallel_split_test spec/5parallel_api_spec.rb --format d --out #{junit}.xml"
+      @result = system "parallel_split_test spec/4parallel_spec.rb --format d --out #{junit}.xml"
     ensure
       @success &= @result
     end
