@@ -9,8 +9,8 @@ module Addresses
     element(:notice) { browser.div(data_test: 'notice') }
     element(:first_name) { browser.span(data_test: 'first_name') }
     element(:last_name) { browser.span(data_test: 'last_name') }
-    element(:line_1) { browser.span(data_test: 'line_1') }
-    element(:line_2) { browser.span(data_test: 'line_2') }
+    element(:street_address) { browser.span(data_test: 'street_address') }
+    element(:secondary_address) { browser.span(data_test: 'secondary_address') }
     element(:city) { browser.span(data_test: 'city') }
     element(:state) { browser.span(data_test: 'state') }
     element(:zip_code) { browser.span(data_test: 'zip_code') }

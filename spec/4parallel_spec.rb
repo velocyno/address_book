@@ -6,7 +6,7 @@ describe "Test in Parallel" do
 
   it 'signs up' do
     SignUp.visit.submit_form(user)
-    expect(Home.new.signed_in_user).to eq user.email_address
+    expect(Home.visit.signed_in_user).to eq user.email_address
   end
 
   it 'login' do
