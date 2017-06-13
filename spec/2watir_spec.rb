@@ -5,7 +5,7 @@ describe "Test in Series" do
   let(:browser) { @browser }
 
   it "Runs in serial with Watir" do
-    browser.goto "http://#{Watir::Rails.host}:#{Watir::Rails.port}"
+    browser.goto Site.base_url
     browser.a(data_test: 'sign-in').click
     browser.a(data_test: 'sign-up').click
     email = "#{rand 10000000}@example.com"
