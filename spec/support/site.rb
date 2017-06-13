@@ -1,3 +1,5 @@
+require 'rest-client'
+
 module AddressBook
   class Site
 
@@ -36,7 +38,7 @@ module AddressBook
 
     # TODO - can this be done by API?
     def logged_in?(user)
-      Home.visit.signed_in_user == user.email_address
+      Home.new.signed_in_user == user.email_address
     end
 
     def address?(address)
