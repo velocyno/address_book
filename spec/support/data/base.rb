@@ -5,7 +5,30 @@ module AddressBook
   module Data
     class Base < WatirModel
 
-      attr_accessor :id
+      class << self
+
+        attr_writer :required_keys
+
+        def required_keys
+          @required_keys ||= []
+        end
+
+        # define a key and an optional block that provides a default value for the key
+        def key(symbol, required: true, &block)
+          keys << symbol unless @keys.include? symbol
+          required_keys << symbol if required
+          attr_accessor symbol
+          defaults[symbol] = block if block
+        end
+      end
+
+      def eql?(other)
+        self.class.required_keys.all? { |k| send(k) == other[k] }
+      end
+
+      alias_method :==, :eql?
+
+      key(:id, required: false) {}
 
     end
 

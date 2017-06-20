@@ -44,4 +44,3 @@ RSpec.configure do |config|
     @browser.quit
   end
 end
-
