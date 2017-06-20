@@ -6,6 +6,10 @@ class AddressesController < ApplicationController
   # GET /addresses.json
   def index
     @addresses = current_user.addresses.order(:id)
+    respond_to do |f|
+      f.html
+      f.json { render json: @addresses }
+    end
   end
 
   # GET /addresses/1
