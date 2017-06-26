@@ -1,5 +1,5 @@
 ENV['RAILS_ENV'] ||= 'test'
-ENV['USE_SAUCE'] ||= 'false'
+ENV['USE_SAUCE'] ||= 'true'
 ENV['HEROKU'] ||= 'true'
 
 if ENV['HEROKU'] != 'true'
@@ -10,23 +10,20 @@ end
 require "watir_drops"
 require "watir_model"
 require 'require_all'
+require 'saucer'
 
 require_rel "support/site"
 require_rel "support/data"
 require_rel "support/pages"
-
-require_rel "support/sauce_helpers" if ENV['USE_SAUCE'] == 'true'
 
 include AddressBook
 include Page
 
 RSpec.configure do |config|
 
-  config.include SauceHelpers if ENV['USE_SAUCE'] == 'true'
-
-  config.before(:each) do |test|
+  config.before(:each) do
     @browser = if ENV['USE_SAUCE'] == 'true'
-                 initialize_driver(test.full_description)
+                 Watir::Browser.new(Saucer::Driver.new)
                else
                  Watir::Browser.new
                end
@@ -39,8 +36,7 @@ RSpec.configure do |config|
                     end
   end
 
-  config.after(:each) do |example|
-    submit_results(@browser.wd.session_id, !example.exception) if @browser.wd.respond_to? :session_id
+  config.after(:each) do
     @browser.quit
   end
 end

@@ -36,6 +36,7 @@ module AddressBook
 
     def to_address
       parsed = Data::Address.keys.each_with_object({}) do |sym, hash|
+        next unless respond_to? sym
         hash[sym] = send(sym).text
       end
       Data::Address.new parsed
