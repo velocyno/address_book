@@ -49,6 +49,7 @@ module AddressBook
       site.log_in_user(user)
       site.create_address(address)
       address2 = site.create_address
+      @browser.driver.sauce.comment = "Address Created! Good job!"
 
       expect(AddressList.visit.address?(address)).to eq true
       expect(AddressList.visit.address?(address2)).to eq true
@@ -72,6 +73,7 @@ module AddressBook
 
       expect(AddressList.new.destroyed_message?).to eq true
       expect(site.address?(address)).to eq false
+      fail "This is the Failure"
     end
 
   end
