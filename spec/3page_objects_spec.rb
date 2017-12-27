@@ -6,8 +6,8 @@ module AddressBook
     it 'Uses Page objects' do
       Home.visit.follow_sign_in
       SignIn.new.follow_sign_up
-      user = Data::User.new
-      SignUp.new.submit_form(user)
+      user_data = Data::User.new
+      SignUp.new.submit_form(user_data)
       expect(Home.new.signed_in_user).to eq user.email_address
 
       Home.new.sign_out_user

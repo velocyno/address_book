@@ -46,7 +46,7 @@ group :development, :test do
   gem 'rake'
   gem 'rspec', '~> 3.5.0'
   gem 'rspec-rails'
-  gem 'watir', '~> 6.0'
+  gem 'watir', '= 6.2.1'
   gem 'watir_drops', ['~> 0.7', '> 0.7.0']
   gem 'watir_model'
   gem 'require_all'
@@ -54,6 +54,7 @@ group :development, :test do
   gem 'sauce_whisk'
   gem 'faker'
   gem 'data_magic'
+  gem 'webdrivers'
 end
 
 group :development do

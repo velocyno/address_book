@@ -6,9 +6,9 @@ module AddressBook
 
     element(:create) { browser.a(data_test: 'create') }
     elements(:addresses) { browser.tbody.wait_until(&:present?).trs }
-    element(:show) { |index = 0| browser.td(text: 'Show', index: index) }
-    element(:edit) { |index = 0| browser.td(text: 'Edit', index: index) }
-    element(:delete) { |index = 0| browser.td(text: 'Destroy', index: index) }
+    element(:show) { |index = 0| browser.a(text: 'Show', index: index) }
+    element(:edit) { |index = 0| browser.a(text: 'Edit', index: index) }
+    element(:delete) { |index = 0| browser.a(text: 'Destroy', index: index) }
     element(:notice) { browser.div(data_test: 'notice') }
 
     def follow_new_address

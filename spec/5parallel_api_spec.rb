@@ -22,7 +22,7 @@ module AddressBook
     end
 
     it 'logout' do
-      site.log_in_user(user)
+      site.login(user)
 
       Home.visit.sign_out_user
 
@@ -30,7 +30,7 @@ module AddressBook
     end
 
     it 'creates address' do
-      site.log_in_user(user)
+      site.login
 
       AddressNew.visit.submit_form(address)
 

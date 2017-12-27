@@ -22,13 +22,13 @@
   </div>
 
   <div class="form-group row">
-    <%= f.label :street_address, class: 'col-form-label col-4 col-md-3' %>
-    <%= f.text_field :street_address, class: 'form-control col' %>
+    <%= f.label :address1, class: 'col-form-label col-4 col-md-3', for: 'address_street_address' %>
+    <%= f.text_field :address1, class: 'form-control col', id: 'address_street_address' %>
   </div>
 
   <div class="form-group row">
-    <%= f.label :secondary_address, class: 'col-form-label col-4 col-md-3' %>
-    <%= f.text_field :secondary_address, class: 'form-control col' %>
+    <%= f.label :address2, class: 'col-form-label col-4 col-md-3', for: 'address_secondary_address' %>
+    <%= f.text_field :address2, class: 'form-control col', id: 'address_secondary_address' %>
   </div>
 
   <div class="form-group row">

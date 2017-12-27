@@ -11,28 +11,39 @@ module AddressBook
       def base_url
         @@base_url
       end
+
+      def browser=(browser)
+        @@browser = browser
+      end
+
+      def browser
+        @@browser
+      end
+    end
+
+    def browser
+      @@browser
     end
 
     def create_user(user = nil)
       user ||= Data::User.new
-
-      payload = {"user[email]" => user.email_address,
-                 "user[password]" => user.password}
-
       call = {url: "#{Site.base_url}/users",
               method: :post,
-              payload: payload}
+              payload: {"user[email]" => user.email_address,
+                        "user[password]" => user.password}}
 
-      RestClient::Request.execute(call) do |response, request, result|
-        @remember_token = result.instance_variable_get('@header')['set-cookie'][1][/^remember_token=([^;]*)/, 1]
+      RestClient::Request.execute(call) do |_resp, _req, result|
+        header = result.instance_variable_get('@header')
+        cookie = header['set-cookie'][1]
+        @remember_token = cookie[/^remember_token=([^;]*)/, 1]
       end
       user
     end
 
-    def log_in_user(user = nil)
+    def login(user = nil)
       Home.visit
-      create_user(user)
-      Base.browser.cookies.add 'remember_token', @remember_token
+      user = create_user(user)
+      browser.cookies.add 'remember_token', @remember_token
       user
     end
 
@@ -55,37 +66,38 @@ module AddressBook
       end
     end
 
-    def address_list
-      url = "#{Site.base_url}/addresses.json"
-      call = {url: url,
+    def address?(address)
+      address.id
+      update_address_id(address) unless address.id
+      p = AddressShow.new.page_url(address)
+      call = {url: p,
               method: :get,
               headers: headers}
       RestClient::Request.execute(call) do |response, _request, result|
         return false if [404, 500].include? response.code
-        JSON.parse(result.body).map { |address| Data::Address.convert(address) }
+        doc = Nokogiri::XML(result.body)
+        h = Data::Address.keys.each_with_object({}) do |key, hash|
+          hash[key] = doc.at_css("span[data-test='#{key}']").text.strip
+        end
+        Data::Address.new(h) == address
       end
-    end
-
-    def address?(address)
-      address_list.include? address
     end
 
     def create_address(address = nil)
       address ||= Data::Address.new
-      payload = address.keys.each_with_object({}) do |key, hash|
-        hash["address[#{key}]"] = address.send key
-      end
+      payload = address_payload(address)
 
       call = {url: "#{Site.base_url}/addresses",
               method: :post,
               payload: payload,
               headers: headers}
 
-      RestClient::Request.execute(call) do |response, request, result|
+      RestClient::Request.execute(call) do |_resp, _req, result|
         @id = result.body[/(\d+)[^\d]*$/, 1]
       end
 
-      address.tap { |a| a.id = @id }
+      address.id = @id
+      address
     end
 
     private

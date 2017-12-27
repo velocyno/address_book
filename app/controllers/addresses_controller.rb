@@ -6,15 +6,20 @@ class AddressesController < ApplicationController
   # GET /addresses.json
   def index
     @addresses = current_user.addresses.order(:id)
-    respond_to do |f|
-      f.html
-      f.json { render json: @addresses }
+
+    respond_to do |format|
+      format.json { render json: @addresses }
+      format.html
     end
   end
 
   # GET /addresses/1
   # GET /addresses/1.json
   def show
+    respond_to do |format|
+      format.json { render json: @address}
+      format.html
+    end
   end
 
   # GET /addresses/new
@@ -33,11 +38,11 @@ class AddressesController < ApplicationController
 
     respond_to do |format|
       if @address.save
+        format.json { render json: @address }
         format.html { redirect_to @address, notice: 'Address was successfully created.' }
-        format.json { render :show, status: :created, location: @address }
       else
-        format.html { render :new }
         format.json { render json: @address.errors, status: :unprocessable_entity }
+        format.html { render :new }
       end
     end
   end
@@ -74,6 +79,6 @@ class AddressesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def address_params
-      params.require(:address).permit(:first_name, :last_name, :street_address, :secondary_address, :city, :state, :zip_code, :country, :birthday, :note)
+      params.require(:address).permit(:first_name, :last_name, :address1, :address2, :city, :state, :zip_code, :country, :birthday, :note)
     end
 end
