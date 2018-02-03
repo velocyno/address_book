@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20180121011153) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
-    t.boolean  "card"
     t.string   "interests"
     t.string   "phone"
     t.binary   "file"
