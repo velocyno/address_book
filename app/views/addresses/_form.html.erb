@@ -38,6 +38,7 @@
 
   <div class="form-group row">
     <%= f.label :state, class: 'col-form-label col-4 col-md-3' %>
+    <%= f.select :state, options_for_select(us_states), class: 'form-control col' %>
     <%= f.text_field :state, class: 'form-control col' %>
   </div>
 
@@ -47,13 +48,51 @@
   </div>
 
   <div class="form-group row">
-    <%= f.label :country, class: 'col-form-label col-4 col-md-3' %>
-    <%= f.text_field :country, class: 'form-control col' %>
+    <span class="col-form-label col-3 col-md-3">Country: </span>
+    <%= f.radio_button :country, true %>
+    <%= f.label :country_us, "United States", class: 'col-form-label col-4 col-md-3' %>
+    <%= f.radio_button :country, false %>
+    <%= f.label :country_ca, "Canada", class: 'col-form-label col-4 col-md-3' %>
   </div>
 
   <div class="form-group row">
     <%= f.label :birthday, class: 'col-form-label col-4 col-md-3' %>
-    <%= f.date_select :birthday %>
+    <%= f.date_field :birthday %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :color, class: 'col-form-label col-4 col-md-3' %>
+    <%= f.color_field :color %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :age, class: 'col-form-label col-4 col-md-3' %>
+    <%= f.number_field :age %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :website, class: 'col-form-label col-4 col-md-3' %>
+    <%= f.url_field :website %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :picture, class: 'col-form-label col-4 col-md-3' %>
+    <%= f.file_field :picture %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :phone, class: 'col-form-label col-4 col-md-3' %>
+    <%= f.phone_field :phone %>
+  </div>
+
+  <div class="form-group row">
+    <span class="col-form-label col-4 col-md-3">Common Interests</span>
+    <%= f.check_box :interest_climb %>
+    <%= f.label :interest_climb, "Climbing", class: 'col-form-label col-3 col-md-2' %>
+    <%= f.check_box :interest_dance %>
+    <%= f.label :interest_dance, "Dancing", class: 'col-form-label col-3 col-md-2' %>
+    <%= f.check_box :interest_read %>
+    <%= f.label :interest_read, "Reading", class: 'col-form-label col-3 col-md-2' %>
   </div>
 
   <div class="form-group row">

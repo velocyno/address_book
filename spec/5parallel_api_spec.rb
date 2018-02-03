@@ -32,7 +32,8 @@ module AddressBook
     it 'creates address' do
       site.login
 
-      AddressNew.visit.submit_form(address)
+      AddressNew.visit
+          #.submit_form(address)
 
       expect(AddressShow.new.created_message?).to eq true
       expect(site.address?(address)).to eq true

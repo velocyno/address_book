@@ -40,7 +40,42 @@
 
 <p class="row no-gutters">
   <span class="col-3 col-md-2"><strong>Birthday: </strong></span>
-  <span class="col offset-1 offset-sm-0" data-test="birthday"> <%= @address.birthday %></span>
+  <span class="col offset-1 offset-sm-0" data-test="birthday"> <%= @address.birthday.strftime("%-m/%d/%Y") %></span>
+</p>
+
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Color: </strong></span>
+  <span data-test="color" style="width: 25px; height: 25px; background: <%= @address.color %>"></span>
+</p>
+
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Age: </strong></span>
+  <span class="col offset-1 offset-sm-0" data-test="age"> <%= @address.age %></span>
+</p>
+
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Website: </strong></span>
+  <span class="col offset-1 offset-sm-0" data-test="website"> <%= @address.website %></span>
+</p>
+
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Phone: </strong></span>
+  <span class="col offset-1 offset-sm-0" data-test="phone"> <%= number_to_phone @address.phone %></span>
+</p>
+
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Climbing? </strong></span>
+  <span class="col offset-1 offset-sm-0" data-test="interest_climb"> <%= @address.interest_climb ? "Yes" : "No" %></span>
+</p>
+
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Dancing? </strong></span>
+  <span class="col offset-1 offset-sm-0" data-test="interest_dance"> <%= @address.interest_dance ? "Yes" : "No" %></span>
+</p>
+
+<p class="row no-gutters">
+  <span class="col-3 col-md-2"><strong>Reading? </strong></span>
+  <span class="col offset-1 offset-sm-0" data-test="interest_read"> <%= @address.interest_read ? "Yes" : "No" %></span>
 </p>
 
 <p class="row no-gutters">

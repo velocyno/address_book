@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171227025255) do
+ActiveRecord::Schema.define(version: 20180121011153) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -23,9 +23,19 @@ ActiveRecord::Schema.define(version: 20171227025255) do
     t.string   "country"
     t.date     "birthday"
     t.text     "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "user_id"
+    t.boolean  "card"
+    t.string   "interests"
+    t.string   "phone"
+    t.binary   "file"
+    t.string   "website"
+    t.integer  "age"
+    t.string   "color"
+    t.boolean  "interest_climb"
+    t.boolean  "interest_dance"
+    t.boolean  "interest_read"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
