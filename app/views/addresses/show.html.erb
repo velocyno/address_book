@@ -40,7 +40,7 @@
 
 <p class="row no-gutters">
   <span class="col-3 col-md-2"><strong>Birthday: </strong></span>
-  <span class="col offset-1 offset-sm-0" data-test="birthday"> <%= @address.birthday.strftime("%-m/%d/%Y") %></span>
+  <span class="col offset-1 offset-sm-0" data-test="birthday"> <%= @address.birthday.strftime("%-m/%d/%Y") if @address.birthday %></span>
 </p>
 
 <p class="row no-gutters">
