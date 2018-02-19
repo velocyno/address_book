@@ -13,7 +13,7 @@
           <%= link_to 'Addresses', addresses_path, class: 'nav-item nav-link', data: {test: 'addresses'} %>
           <%= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-item nav-link', data: {test: 'sign-out'} %>
       <% else %>
-          <%= link_to 'Sign in', sign_in_path, class: "nav-item nav-link", data: {test: 'sign-in'} %>
+          <%= link_to 'Sign in', sign_in_path, id: "sign-in", class: "nav-item nav-link", data: {test: 'sign-in'} %>
       <% end %>
     </div>
 
