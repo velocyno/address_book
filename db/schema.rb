@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121011153) do
+ActiveRecord::Schema.define(version: 20180121004800) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20180121011153) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
-    t.boolean  "card"
+    t.string   "card"
     t.string   "interests"
     t.string   "phone"
     t.binary   "file"

@@ -48,10 +48,10 @@
 
   <div class="form-group row">
     <span class="col-form-label col-3 col-md-3">Country: </span>
-    <%= f.radio_button :country, true %>
-    <%= f.label :country_us, "United States", class: 'col-form-label col-4 col-md-3' %>
-    <%= f.radio_button :country, false %>
-    <%= f.label :country_ca, "Canada", class: 'col-form-label col-4 col-md-3' %>
+    <%= f.radio_button :country, 'us' %>
+    <%= f.label :country, "United States", value: 'us', class: 'col-form-label col-4 col-md-3' %>
+    <%= f.radio_button :country, 'canada' %>
+    <%= f.label :country, "Canada", value: 'canada', class: 'col-form-label col-4 col-md-3' %>
   </div>
 
   <div class="form-group row">
